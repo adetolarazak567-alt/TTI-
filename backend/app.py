@@ -170,7 +170,9 @@ def get_credits():
 def generate():
     data = request.json
     prompt = data.get('prompt', 'a beautiful landscape')
-    ip = get_client_ip()
+    size = data.get('size', '1024x1024')
+    seed = random.randint(1, 999999)
+    url = f"https://image.pollinations.ai/prompt/{prompt}?seed={seed}&width={size.split('x')[0]}&height={size.split('x')[1]}"
 
     # ============================================================
     # 🔒 Check credit limit
